@@ -59,14 +59,14 @@ body.ltr {
 
 .language-selector {
     position: fixed;
-    top: 20px;
+    top: 90px;
     right: 20px;
-    z-index: 999;
+    z-index: 2000;
     display: flex;
     gap: 8px;
     background-color: var(--bg-card);
     padding: 8px;
-    border-radius: 8px;
+    border-radius: 10px;
     box-shadow: var(--shadow);
     border: 1px solid var(--border-color);
 }
@@ -946,11 +946,23 @@ body.rtl .iot-header {
 
 @media (max-width: 768px) {
     .language-selector {
-        top: 10px;
-        right: 10px;
+        top: 82px;
+        right: 14px;
+        z-index: 2000;
         gap: 6px;
         padding: 6px;
     }
+
+    body.rtl .language-selector {
+        right: auto;
+        left: 14px;
+    }
+
+    .lang-btn {
+        padding: 5px 10px;
+        font-size: 11px;
+    }
+}
 
     .lang-btn {
         padding: 4px 10px;
