@@ -30,12 +30,68 @@ body {
     line-height: 1.6;
     color: var(--text-dark);
     background-color: var(--white);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+body.rtl {
+    direction: rtl;
+    font-family: 'Segoe UI', 'Arial', 'Droid Arabic Naskh', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body.ltr {
+    direction: ltr;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+}
+
+/* ============================================
+   LANGUAGE SELECTOR
+   ============================================ */
+
+.language-selector {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    z-index: 999;
+    display: flex;
+    gap: 10px;
+    background-color: var(--white);
+    padding: 10px;
+    border-radius: 50px;
+    box-shadow: var(--shadow);
+}
+
+body.rtl .language-selector {
+    right: auto;
+    left: 20px;
+}
+
+.lang-btn {
+    padding: 8px 15px;
+    border: none;
+    background-color: var(--light-bg);
+    color: var(--text-dark);
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.lang-btn:hover {
+    background-color: var(--accent-color);
+    color: var(--white);
+}
+
+.lang-btn.active {
+    background-color: var(--primary-color);
+    color: var(--white);
 }
 
 /* ============================================
@@ -70,6 +126,10 @@ body {
     gap: 30px;
 }
 
+body.rtl .nav-menu {
+    flex-direction: row-reverse;
+}
+
 .nav-link {
     text-decoration: none;
     color: var(--text-dark);
@@ -88,9 +148,15 @@ body {
     position: absolute;
     bottom: -5px;
     left: 0;
+    right: auto;
     width: 100%;
     height: 2px;
     background-color: var(--primary-color);
+}
+
+body.rtl .nav-link.active::after {
+    left: auto;
+    right: 0;
 }
 
 .hamburger {
@@ -153,6 +219,10 @@ body {
     justify-content: center;
     flex-wrap: wrap;
     animation: fadeInUp 1.4s ease;
+}
+
+body.rtl .hero-buttons {
+    flex-direction: row-reverse;
 }
 
 .btn {
@@ -229,6 +299,10 @@ section {
     align-items: center;
 }
 
+body.rtl .about-grid {
+    direction: rtl;
+}
+
 .about-content p {
     font-size: 16px;
     color: var(--text-light);
@@ -261,6 +335,10 @@ section {
     padding-left: 0;
 }
 
+body.rtl .interests-list {
+    padding-right: 0;
+}
+
 .interests-list li {
     color: var(--text-light);
     padding: 8px 0;
@@ -268,11 +346,20 @@ section {
     align-items: center;
 }
 
+body.rtl .interests-list li {
+    flex-direction: row-reverse;
+}
+
 .interests-list li::before {
     content: '→';
     color: var(--primary-color);
     font-weight: bold;
     margin-right: 10px;
+}
+
+body.rtl .interests-list li::before {
+    margin-right: 0;
+    margin-left: 10px;
 }
 
 /* ============================================
@@ -351,6 +438,10 @@ section {
     flex-wrap: wrap;
 }
 
+body.rtl .social-links {
+    flex-direction: row-reverse;
+}
+
 .social-link {
     display: flex;
     align-items: center;
@@ -363,6 +454,10 @@ section {
     font-weight: 600;
     box-shadow: var(--shadow);
     transition: all 0.3s ease;
+}
+
+body.rtl .social-link {
+    flex-direction: row-reverse;
 }
 
 .social-link:hover {
@@ -411,6 +506,19 @@ section {
    ============================================ */
 
 @media (max-width: 768px) {
+    .language-selector {
+        top: auto;
+        bottom: 10px;
+        right: 10px;
+        left: auto;
+        flex-direction: column;
+    }
+
+    body.rtl .language-selector {
+        right: 10px;
+        left: auto;
+    }
+
     .nav-menu {
         gap: 15px;
         font-size: 14px;
@@ -437,6 +545,10 @@ section {
         box-shadow: var(--shadow);
     }
 
+    body.rtl .nav-menu.active .nav-link {
+        flex-direction: column;
+    }
+
     .hero-title {
         font-size: 36px;
     }
@@ -452,6 +564,10 @@ section {
     .hero-buttons {
         flex-direction: column;
         align-items: center;
+    }
+
+    body.rtl .hero-buttons {
+        flex-direction: column;
     }
 
     .btn {
@@ -475,6 +591,10 @@ section {
     .social-links {
         flex-direction: column;
         align-items: center;
+    }
+
+    body.rtl .social-links {
+        flex-direction: column;
     }
 
     .social-link {
@@ -517,5 +637,15 @@ section {
 
     section {
         padding: 30px 0;
+    }
+
+    .language-selector {
+        gap: 5px;
+        padding: 5px;
+    }
+
+    .lang-btn {
+        padding: 6px 12px;
+        font-size: 10px;
     }
 }
