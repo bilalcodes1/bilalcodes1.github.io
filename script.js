@@ -1,205 +1,1063 @@
-// ============================================
-// MULTILINGUAL SUPPORT
-// ============================================
+/* ============================================
+   VARIABLES & GENERAL STYLES
+   ============================================ */
 
-const translations = {
-    en: {
-        home: "Home",
-        about: "About",
-        work: "What I Do",
-        projects: "Projects",
-        iot: "IoT & Hardware",
-        certificates: "Certificates",
-        contact: "Contact",
-        viewProjects: "View Projects",
-        github: "GitHub",
-        linkedin: "LinkedIn",
-        youtube: "YouTube",
-        instagram: "Instagram",
-        website: "Website",
-        footer: "All rights reserved."
-    },
-    ar: {
-        home: "الرئيسية",
-        about: "عني",
-        work: "ما أعمل عليه",
-        projects: "المشاريع",
-        iot: "IoT والأجهزة",
-        certificates: "الشهادات",
-        contact: "التواصل",
-        viewProjects: "عرض المشاريع",
-        github: "GitHub",
-        linkedin: "LinkedIn",
-        youtube: "YouTube",
-        instagram: "Instagram",
-        website: "الموقع الإلكتروني",
-        footer: "جميع الحقوق محفوظة."
-    }
-};
-
-let currentLanguage = localStorage.getItem('language') || 'en';
-
-// ============================================
-// CHANGE LANGUAGE FUNCTION
-// ============================================
-
-function changeLanguage(lang) {
-    currentLanguage = lang;
-    localStorage.setItem('language', lang);
-    updatePageContent();
-    updatePageDirection();
+:root {
+    --primary-color: #0066cc;
+    --primary-hover: #0052a3;
+    --accent-color: #4d94ff;
+    --accent-green: #10b981;
+    --bg-dark: #0f0f0f;
+    --bg-darker: #0a0a0a;
+    --bg-card: #1a1a1a;
+    --text-primary: #ffffff;
+    --text-secondary: #b0b0b0;
+    --text-muted: #808080;
+    --border-color: #2a2a2a;
+    --border-light: #333333;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.28);
+    --shadow-lg: 0 20px 35px rgba(0, 0, 0, 0.42);
 }
 
-// ============================================
-// UPDATE PAGE CONTENT
-// ============================================
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-function updatePageContent() {
-    const t = translations[currentLanguage];
-    
-    // Navigation
-    document.querySelectorAll('.nav-link').forEach((link, index) => {
-        const keys = ['home', 'about', 'work', 'projects', 'iot', 'certificates', 'contact'];
-        if (keys[index]) link.textContent = t[keys[index]];
-    });
-    
-    // Footer
-    const footerText = document.querySelector('.footer p');
-    if (footerText) {
-        footerText.textContent = `© 2026 Bilal Zamil Ahmed. ${t.footer}`;
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background-color: var(--bg-dark);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+body.rtl {
+    font-family: "Tahoma", "Arial", sans-serif;
+}
+
+a {
+    color: inherit;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+main {
+    overflow: hidden;
+}
+
+/* ============================================
+   LANGUAGE SELECTOR
+   ============================================ */
+
+.language-selector {
+    position: fixed;
+    top: 90px;
+    right: 20px;
+    z-index: 99999;
+    display: flex;
+    gap: 8px;
+    background: rgba(18, 18, 18, 0.92);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 8px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(10px);
+}
+
+body.rtl .language-selector {
+    right: auto;
+    left: 20px;
+}
+
+.lang-btn {
+    border: none;
+    outline: none;
+    padding: 7px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 800;
+    font-size: 12px;
+    color: var(--text-secondary);
+    background: transparent;
+    transition: 0.2s ease;
+}
+
+.lang-btn:hover {
+    background-color: var(--border-light);
+    color: var(--text-primary);
+}
+
+.lang-btn.active {
+    background: var(--primary-color);
+    color: #ffffff;
+}
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+
+.navbar {
+    background-color: rgba(10, 10, 10, 0.96);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    direction: ltr;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+}
+
+.nav-brand {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--primary-color);
+    letter-spacing: 2px;
+    text-decoration: none;
+}
+
+.nav-brand:hover {
+    color: var(--accent-color);
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    align-items: center;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 14px;
+    transition: color 0.2s ease;
+    position: relative;
+    white-space: nowrap;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--primary-color);
+}
+
+.nav-link.active::after {
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color);
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    background: transparent;
+}
+
+.hamburger span {
+    width: 24px;
+    height: 2px;
+    background-color: var(--text-primary);
+    transition: 0.25s ease;
+    display: block;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+
+.btn {
+    padding: 12px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--text-primary);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-color);
+    color: var(--text-primary);
+    transform: translateY(-2px);
+}
+
+/* ============================================
+   HERO
+   ============================================ */
+
+.hero {
+    background: linear-gradient(135deg, rgba(0, 102, 204, 0.13) 0%, rgba(16, 185, 129, 0.06) 100%);
+    border-bottom: 1px solid var(--border-color);
+    padding: 120px 0;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+}
+
+.hero-content {
+    text-align: center;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.hero-title {
+    font-size: clamp(36px, 6vw, 56px);
+    font-weight: 800;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, #0066cc 0%, #10b981 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-subtitle {
+    font-size: 20px;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+}
+
+.hero-description {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+    line-height: 1.8;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ============================================
+   SECTIONS
+   ============================================ */
+
+section {
+    padding: 80px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.section-title {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 60px;
+    color: var(--text-primary);
+}
+
+/* ============================================
+   ABOUT
+   ============================================ */
+
+.about {
+    background-color: rgba(26, 26, 26, 0.5);
+}
+
+.about-content {
+    max-width: 850px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.about-content p {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    line-height: 1.8;
+}
+
+body.rtl .about-content {
+    text-align: right;
+}
+
+/* ============================================
+   WORK ON
+   ============================================ */
+
+.work-on {
+    background-color: var(--bg-dark);
+}
+
+.skills-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+}
+
+.badge {
+    background-color: rgba(0, 102, 204, 0.15);
+    color: var(--accent-color);
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-size: 14px;
+    border: 1px solid rgba(0, 102, 204, 0.3);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.badge:hover {
+    background-color: rgba(0, 102, 204, 0.25);
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+/* ============================================
+   PROJECT CARDS
+   ============================================ */
+
+.software-projects,
+.activities,
+.education,
+.contact {
+    background-color: rgba(26, 26, 26, 0.5);
+}
+
+.projects .container,
+.iot-section .container,
+.activities .container,
+.certificates .container,
+.education .container {
+    max-width: 1000px;
+}
+
+.project-card,
+.iot-project-card,
+.activity-card,
+.certificate-card,
+.education-card,
+.tech-item,
+.contact-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    transition: all 0.3s ease;
+}
+
+.project-card,
+.iot-project-card {
+    padding: 32px;
+    margin-bottom: 24px;
+}
+
+.project-card:hover,
+.iot-project-card:hover,
+.activity-card:hover,
+.certificate-card:hover,
+.education-card:hover,
+.tech-item:hover,
+.contact-card:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 22px rgba(0, 102, 204, 0.16);
+    transform: translateY(-4px);
+}
+
+.project-card.featured,
+.iot-project-card.featured {
+    background: linear-gradient(135deg, rgba(0, 102, 204, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
+    border-color: rgba(0, 102, 204, 0.3);
+}
+
+.project-header,
+.iot-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    gap: 20px;
+}
+
+.project-title,
+.iot-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.iot-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.project-status,
+.iot-category {
+    display: inline-block;
+    font-size: 12px;
+    color: var(--accent-color);
+    background-color: rgba(0, 102, 204, 0.15);
+    padding: 4px 12px;
+    border-radius: 999px;
+    margin-top: 8px;
+}
+
+.iot-category {
+    color: var(--accent-green);
+    background-color: rgba(16, 185, 129, 0.15);
+}
+
+.project-links,
+.iot-links {
+    display: flex;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.project-link,
+.iot-link {
+    width: 38px;
+    height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 102, 204, 0.1);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.project-link:hover,
+.iot-link:hover {
+    background-color: var(--primary-color);
+    color: var(--text-primary);
+    border-color: var(--primary-color);
+}
+
+.project-description,
+.iot-description,
+.activity-description,
+.education-description,
+.certificate-description {
+    color: var(--text-secondary);
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.project-description,
+.iot-description {
+    margin-bottom: 20px;
+}
+
+.project-tech,
+.iot-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tech-badge {
+    background-color: rgba(16, 185, 129, 0.15);
+    color: var(--accent-green);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+/* ============================================
+   IMAGES / GALLERIES
+   ============================================ */
+
+.responsive-img,
+.gallery-img,
+.certificate-img {
+    width: 100%;
+    display: block;
+    border-radius: 12px;
+}
+
+.project-image,
+.iot-thumbnail,
+.activity-image,
+.certificate-image {
+    margin-bottom: 20px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-darker);
+    box-shadow: var(--shadow);
+}
+
+.project-image img,
+.iot-thumbnail img,
+.activity-image img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+}
+
+.iot-thumbnail img {
+    height: 340px;
+}
+
+.activity-image img {
+    height: 280px;
+}
+
+.iot-gallery {
+    margin: 28px 0;
+}
+
+.iot-gallery h4,
+.iot-features h4,
+.iot-why h4 {
+    font-size: 16px;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.gallery-item {
+    background-color: rgba(0, 0, 0, 0.22);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.gallery-img {
+    height: 240px;
+    object-fit: cover;
+}
+
+.gallery-caption {
+    padding: 10px 14px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+/* ============================================
+   IOT DETAILS
+   ============================================ */
+
+.iot-features,
+.iot-why {
+    background-color: rgba(0, 0, 0, 0.22);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 24px;
+}
+
+.iot-features ul {
+    list-style: none;
+}
+
+.iot-features li {
+    color: var(--text-secondary);
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.iot-features i {
+    color: var(--accent-green);
+    font-size: 14px;
+}
+
+.iot-why {
+    background-color: rgba(16, 185, 129, 0.1);
+    border-inline-start: 3px solid var(--accent-green);
+}
+
+/* ============================================
+   ACTIVITIES
+   ============================================ */
+
+.activities-grid,
+.education-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.activity-card {
+    padding: 28px;
+    text-align: center;
+}
+
+.activity-icon {
+    font-size: 44px;
+    color: var(--primary-color);
+    margin: 8px 0 16px;
+}
+
+.activity-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.activity-category {
+    font-size: 12px;
+    color: var(--accent-green);
+    margin-bottom: 12px;
+}
+
+/* ============================================
+   CERTIFICATES
+   ============================================ */
+
+.certificates {
+    background-color: var(--bg-dark);
+}
+
+.certificate-card {
+    padding: 32px;
+    display: flex;
+    gap: 28px;
+    align-items: flex-start;
+    margin-bottom: 28px;
+}
+
+.certificate-image {
+    flex: 0 0 380px;
+    max-width: 380px;
+    background-color: #ffffff;
+}
+
+.certificate-img {
+    height: auto;
+    object-fit: contain;
+    background-color: #ffffff;
+}
+
+.certificate-content {
+    flex: 1;
+}
+
+.certificate-issuer {
+    font-size: 14px;
+    color: var(--accent-color);
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.certificate-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+.certificate-name,
+.certificate-date,
+.certificate-code {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+/* ============================================
+   EDUCATION / TECH / CONTACT
+   ============================================ */
+
+.education-card {
+    padding: 24px;
+}
+
+.education-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.education-title i {
+    color: var(--primary-color);
+}
+
+.education-links {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.education-links a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.tech-stack {
+    background-color: var(--bg-dark);
+}
+
+.tech-grid,
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 20px;
+}
+
+.tech-item {
+    padding: 24px;
+    text-align: center;
+}
+
+.tech-item i,
+.contact-card i {
+    font-size: 32px;
+    color: var(--primary-color);
+    margin-bottom: 12px;
+    display: block;
+}
+
+.tech-item span,
+.contact-card span {
+    font-size: 14px;
+    color: var(--text-secondary);
+    font-weight: 700;
+}
+
+.contact-text {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 16px;
+    margin: 0 auto 40px;
+    max-width: 650px;
+}
+
+.contact-card {
+    padding: 24px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+.contact-location {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-top: 36px;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+.footer {
+    background-color: rgba(10, 10, 10, 0.96);
+    border-top: 1px solid var(--border-color);
+    color: var(--text-muted);
+    text-align: center;
+    padding: 30px 0;
+}
+
+.footer p {
+    font-size: 14px;
+}
+
+/* ============================================
+   RTL FIXES
+   ============================================ */
+
+body.rtl .project-card,
+body.rtl .iot-project-card,
+body.rtl .activity-card,
+body.rtl .certificate-card,
+body.rtl .education-card,
+body.rtl .contact,
+body.rtl .about-content {
+    text-align: right;
+}
+
+body.rtl .hero-content,
+body.rtl .section-title,
+body.rtl .contact-text,
+body.rtl .contact-location,
+body.rtl .gallery-caption,
+body.rtl .activity-card,
+body.rtl .tech-item,
+body.rtl .contact-card {
+    text-align: center;
+}
+
+body.rtl .project-header,
+body.rtl .iot-header,
+body.rtl .education-title,
+body.rtl .iot-title,
+body.rtl .iot-features li {
+    direction: rtl;
+}
+
+body.rtl .project-tech,
+body.rtl .iot-tech,
+body.rtl .skills-badges {
+    direction: rtl;
+}
+
+/* ============================================
+   FADE IN
+   ============================================ */
+
+.fade-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.fade-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 900px) {
+    .nav-menu {
+        gap: 18px;
+    }
+
+    .nav-link {
+        font-size: 13px;
+    }
+
+    .certificate-card {
+        flex-direction: column;
+    }
+
+    .certificate-image {
+        max-width: 100%;
+        flex: auto;
     }
 }
 
-// ============================================
-// UPDATE PAGE DIRECTION (RTL/LTR)
-// ============================================
-
-function updatePageDirection() {
-    const html = document.documentElement;
-    const body = document.body;
-    
-    if (currentLanguage === 'ar') {
-        html.setAttribute('dir', 'rtl');
-        html.setAttribute('lang', 'ar');
-        body.classList.add('rtl');
-        body.classList.remove('ltr');
-    } else {
-        html.setAttribute('dir', 'ltr');
-        html.setAttribute('lang', currentLanguage);
-        body.classList.add('ltr');
-        body.classList.remove('rtl');
+@media (max-width: 768px) {
+    html {
+        scroll-padding-top: 78px;
     }
-    
-    // Update language button styling
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    document.querySelector(`[data-lang="${currentLanguage}"]`).classList.add('active');
+
+    .language-selector {
+        top: 82px;
+        right: 12px;
+        padding: 6px;
+        gap: 5px;
+    }
+
+    body.rtl .language-selector {
+        right: auto;
+        left: 12px;
+    }
+
+    .lang-btn {
+        padding: 5px 9px;
+        font-size: 11px;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 64px;
+        left: 0;
+        right: 0;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 10px 20px 18px;
+        background-color: rgba(10, 10, 10, 0.98);
+        border-bottom: 1px solid var(--border-color);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .nav-menu li {
+        width: 100%;
+    }
+
+    .nav-link {
+        display: block;
+        padding: 12px 0;
+        font-size: 15px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .nav-link.active::after {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .hero {
+        padding: 90px 0 70px;
+        min-height: 480px;
+    }
+
+    .hero-subtitle {
+        font-size: 17px;
+    }
+
+    .hero-description {
+        font-size: 15px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    section {
+        padding: 58px 0;
+    }
+
+    .section-title {
+        margin-bottom: 38px;
+    }
+
+    .project-card,
+    .iot-project-card,
+    .activity-card,
+    .certificate-card,
+    .education-card {
+        padding: 20px;
+    }
+
+    .project-header,
+    .iot-header {
+        flex-direction: column;
+    }
+
+    .activities-grid,
+    .education-grid,
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project-image img,
+    .iot-thumbnail img,
+    .activity-image img,
+    .gallery-img {
+        height: 220px;
+    }
+
+    .iot-title {
+        font-size: 20px;
+    }
 }
 
-// ============================================
-// SMOOTH SCROLLING FOR NAVIGATION LINKS
-// ============================================
-
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        if (this.getAttribute('href').startsWith('#') && this.getAttribute('href') !== '#') {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-                // Close mobile menu if open
-                const navMenu = document.querySelector('.nav-menu');
-                if (navMenu && navMenu.classList.contains('active')) {
-                    navMenu.classList.remove('active');
-                }
-            }
-        }
-    });
-});
-
-// ============================================
-// ACTIVE NAV LINK ON SCROLL
-// ============================================
-
-window.addEventListener('scroll', () => {
-    let current = '';
-    const sections = document.querySelectorAll('section');
-
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-
-        if (pageYOffset >= sectionTop - 200) {
-            current = section.getAttribute('id');
-        }
-    });
-
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
-        }
-    });
-});
-
-// ============================================
-// MOBILE MENU TOGGLE
-// ============================================
-
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('.nav-menu');
-
-if (hamburger) {
-    hamburger.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-    });
-}
-
-// Close menu when clicking outside
-document.addEventListener('click', (e) => {
-    if (!e.target.closest('.navbar')) {
-        if (navMenu && navMenu.classList.contains('active')) {
-            navMenu.classList.remove('active');
-        }
+@media (max-width: 480px) {
+    .container {
+        padding: 0 16px;
     }
-});
 
-// ============================================
-// PAGE LOAD
-// ============================================
+    .hero {
+        padding-top: 82px;
+        min-height: 430px;
+    }
 
-window.addEventListener('load', () => {
-    document.body.style.opacity = '1';
-    updatePageContent();
-    updatePageDirection();
-});
+    .project-title,
+    .iot-title {
+        font-size: 18px;
+    }
 
-// ============================================
-// INTERSECTION OBSERVER FOR FADE-IN EFFECT
-// ============================================
+    .tech-grid,
+    .contact-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
 
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
+    .tech-item,
+    .contact-card {
+        padding: 18px 12px;
+    }
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-// Observe cards and elements
-document.querySelectorAll('.project-card, .iot-project-card, .activity-card, .certificate-card, .education-card, .tech-item, .contact-card').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'all 0.6s ease';
-    observer.observe(el);
-});
+    .activity-image img,
+    .project-image img,
+    .iot-thumbnail img,
+    .gallery-img {
+        height: 205px;
+    }
+}
