@@ -30,6 +30,8 @@ const translations = {
         projectDesc: "I'm working on some exciting projects. Check back soon!",
         getInTouchText: "Feel free to reach out to me on any of these platforms:",
         github: "GitHub",
+        instagram: "Instagram",
+        telegram: "Telegram",
         footer: "All rights reserved."
     },
     ar: {
@@ -59,6 +61,8 @@ const translations = {
         projectDesc: "أنا أعمل على مشاريع مثيرة. عد قريباً!",
         getInTouchText: "لا تتردد في التواصل معي عبر أي من هذه المنصات:",
         github: "GitHub",
+        instagram: "Instagram",
+        telegram: "Telegram",
         footer: "جميع الحقوق محفوظة."
     },
     de: {
@@ -88,6 +92,8 @@ const translations = {
         projectDesc: "Ich arbeite an einigen spannenden Projekten. Kommen Sie bald zurück!",
         getInTouchText: "Zögern Sie nicht, mich auf einer dieser Plattformen zu kontaktieren:",
         github: "GitHub",
+        instagram: "Instagram",
+        telegram: "Telegram",
         footer: "Alle Rechte vorbehalten."
     }
 };
@@ -155,7 +161,15 @@ function updatePageContent() {
     // Contact Section
     document.querySelectorAll('.section-title')[2].textContent = t.contact;
     document.querySelector('.contact-content p').textContent = t.getInTouchText;
-    document.querySelector('.social-link span').textContent = t.github;
+    
+    // Social Links
+    const socialLinks = document.querySelectorAll('.social-link span');
+    const socialLabels = ['github', 'instagram', 'telegram'];
+    socialLinks.forEach((link, index) => {
+        if (socialLabels[index]) {
+            link.textContent = t[socialLabels[index]];
+        }
+    });
     
     // Footer
     document.querySelector('.footer p').textContent = `© 2026 Bilal Zamil Ahmed. ${t.footer}`;
