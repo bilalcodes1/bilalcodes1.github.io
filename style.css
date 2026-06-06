@@ -1,439 +1,1063 @@
-// ============================================
-// FULL MULTILINGUAL SUPPORT: EN / AR / DE
-// ============================================
+/* ============================================
+   VARIABLES & GENERAL STYLES
+   ============================================ */
 
-const translations = {
-    en: {
-        "nav.home": "Home",
-        "nav.about": "About",
-        "nav.work": "What I Do",
-        "nav.projects": "Projects",
-        "nav.iot": "IoT & Hardware",
-        "nav.certificates": "Certificates",
-        "nav.contact": "Contact",
+:root {
+    --primary-color: #0066cc;
+    --primary-hover: #0052a3;
+    --accent-color: #4d94ff;
+    --accent-green: #10b981;
+    --bg-dark: #0f0f0f;
+    --bg-darker: #0a0a0a;
+    --bg-card: #1a1a1a;
+    --text-primary: #ffffff;
+    --text-secondary: #b0b0b0;
+    --text-muted: #808080;
+    --border-color: #2a2a2a;
+    --border-light: #333333;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.28);
+    --shadow-lg: 0 20px 35px rgba(0, 0, 0, 0.42);
+}
 
-        "hero.title": "Bilal Zamil Ahmed",
-        "hero.subtitle": "Third-year Computer Science Student at University of Anbar",
-        "hero.description": "I build practical, AI-assisted software projects and hands-on tech experiments to learn programming, problem-solving, automation, IoT, and real-world development workflows. My focus is not only writing code, but also understanding ideas, testing results, improving user experience, documenting projects, and publishing usable tools.",
-        "hero.viewProjects": "View Projects",
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        "about.title": "About Me",
-        "about.p1": "I am a third-year Computer Science student at the University of Anbar, interested in building practical software tools and learning through real projects.",
-        "about.p2": "I use AI-assisted development as part of my learning process. I focus on turning ideas into working projects, understanding and improving generated code, testing features, fixing problems, writing documentation, and publishing usable tools.",
-        "about.p3": "I also enjoy hands-on technology projects, including IoT systems, hardware experiments, electronic components, and educational visualizations.",
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
 
-        "work.title": "What I Work On",
-        "work.ai": "AI-Assisted Software",
-        "work.telegram": "Telegram Bots",
-        "work.web": "Web Applications",
-        "work.desktop": "Desktop Tools",
-        "work.android": "Android Apps",
-        "work.iot": "IoT & Embedded",
-        "work.educational": "Educational Tools",
-        "work.arabic": "Arabic Learning",
-        "work.serverless": "Serverless Backends",
-        "work.hardware": "Hardware Experiments",
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background-color: var(--bg-dark);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
 
-        "software.title": "Featured Software Projects",
-        "project.uoadrop.status": "Desktop Application",
-        "project.uoadrop.description": "A desktop-first, local-first print request management system for university print shops, built with Electron, Fastify, SQLite, React, Next.js, and Supabase.",
-        "project.deutschdrop.status": "Telegram Bot",
-        "project.deutschdrop.description": "Telegram bot for learning German vocabulary with SRS, CSV import, XP, challenges, daily tasks, achievements, and a Cloudflare Workers/D1 backend.",
-        "project.gymtech.status": "Mobile App",
-        "project.gymtech.description": "AI-powered Arabic fitness Android app built with Kotlin, Jetpack Compose, Clean Architecture, Room, Hilt, and OpenAI.",
-        "project.garden.status": "Educational Website",
-        "project.garden.description": "Arabic environmental educational website connected to a printed QR code for the Student Activities Garden at the College of Computer Science, University of Anbar.",
-        "project.achievements.status": "Web Application",
-        "project.achievements.description": "Arabic student achievements wall for Anbar CS students, with login, weekly tasks, progress tracking, admin task management, and Google Sheets backend.",
-        "project.matrix.status": "Interactive Tool",
-        "project.matrix.description": "Interactive C++ matrix simulator with visual grid, online code execution, and matrix output visualization using HTML, CSS, JavaScript, and Wandbox API.",
+body.rtl {
+    font-family: "Tahoma", "Arial", sans-serif;
+}
 
-        "iot.title": "IoT & Hardware Projects",
-        "iot.fingerprint.title": "Fingerprint-Based Attendance System",
-        "iot.fingerprint.category": "Biometric IoT System",
-        "iot.fingerprint.description": "A biometric attendance system built with ESP32, AS608 fingerprint sensor, DS3231 real-time clock, OLED display, Google Sheets integration, and a custom web dashboard.",
-        "iot.features.title": "Key Features",
-        "iot.features.f1": "Fingerprint-based identity verification",
-        "iot.features.f2": "Real-time attendance logging",
-        "iot.features.f3": "Date and time tracking",
-        "iot.features.f4": "Google Sheets cloud logging",
-        "iot.features.f5": "OLED feedback display",
-        "iot.features.f6": "Web dashboard for user management",
-        "iot.features.f7": "Remote register, update, and delete actions",
-        "iot.gallery.title": "Project Gallery",
-        "iot.gallery.demo": "System Demo",
-        "iot.gallery.hardware": "Device Hardware",
-        "iot.why.title": "Why It Matters",
-        "iot.why.text": "This project combines hardware and software to solve a real problem: reducing manual attendance and preventing proxy attendance. It demonstrates IoT integration, cloud connectivity, and practical system design—all important skills for real-world development.",
+a {
+    color: inherit;
+}
 
-        "activities.title": "Hands-On Creative Tech Activities",
-        "activities.cpp.title": "C++ / Computer Science Wooden Display",
-        "activities.cpp.category": "Creative Tech / Handmade",
-        "activities.cpp.description": "A handmade wooden display inspired by C++ and Computer Science, created as a hands-on creative tech activity.",
-        "activities.iphone.title": "iPhone 6 Teardown & Component Display",
-        "activities.iphone.category": "Hardware / Electronics / Component Study",
-        "activities.iphone.description": "A hardware teardown and component display project using an iPhone 6, arranged inside a framed board to show internal phone components in an educational way.",
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
 
-        "certificates.title": "Certificates",
-        "certificates.huawei.name": "Issued to: Bilal Zamil",
-        "certificates.huawei.date": "Issue Date: April 26, 2026",
-        "certificates.huawei.code": "Certificate Code: ICT20260426000046",
-        "certificates.huawei.description": "Certificate of Completion for successfully completing the study and exam of openGauss Database Technology and Applications through Huawei ICT Academy. This is a course completion certificate, not a professional Huawei certification exam.",
-        "certificates.student.issuer": "University of Anbar",
-        "certificates.student.title": "Student Activities Appreciation Certificate",
-        "certificates.student.name": "Awarded to: Bilal Zamil Ahmed",
-        "certificates.student.date": "Date: December 24, 2025",
-        "certificates.student.code": "Issued by: College of Computer Science and Information Technology",
-        "certificates.student.description": "A certificate of appreciation awarded for participation and distinguished efforts in Student Activities Division activities and during the preparation period of the Student Activities Garden.",
+main {
+    overflow: hidden;
+}
 
-        "education.title": "Educational Visualizations",
-        "education.seg.title": "Segmentation in the 8086 Processor",
-        "education.seg.description": "Interactive Arabic educational page explaining 8086 memory segmentation and physical address calculation.",
-        "education.addr.title": "Logical and Physical Address in 8086",
-        "education.addr.description": "Interactive Arabic tutorial explaining logical and physical addresses in the 8086 processor, with Segment:Offset calculation and visual memory examples.",
-        "common.view": "View",
+/* ============================================
+   LANGUAGE SELECTOR
+   ============================================ */
 
-        "tech.title": "Tech Stack",
-        "contact.title": "Contact & Links",
-        "contact.text": "Feel free to reach out or explore my work through these links.",
-        "contact.location": "Iraq, Anbar",
-        "footer.text": "© 2026 Bilal Zamil Ahmed. All rights reserved."
-    },
+.language-selector {
+    position: fixed;
+    top: 90px;
+    right: 20px;
+    z-index: 99999;
+    display: flex;
+    gap: 8px;
+    background: rgba(18, 18, 18, 0.92);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 8px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(10px);
+}
 
-    ar: {
-        "nav.home": "الرئيسية",
-        "nav.about": "عني",
-        "nav.work": "مجالاتي",
-        "nav.projects": "المشاريع",
-        "nav.iot": "إنترنت الأشياء والهاردوير",
-        "nav.certificates": "الشهادات",
-        "nav.contact": "التواصل",
+body.rtl .language-selector {
+    right: auto;
+    left: 20px;
+}
 
-        "hero.title": "بلال زامل أحمد",
-        "hero.subtitle": "طالب مرحلة ثالثة في علوم الحاسوب — جامعة الأنبار",
-        "hero.description": "أبني مشاريع برمجية عملية بمساعدة الذكاء الاصطناعي وتجارب تقنية يدوية حتى أتعلم البرمجة، حل المشاكل، الأتمتة، إنترنت الأشياء، وطريقة تطوير المشاريع الواقعية. تركيزي ليس فقط على كتابة الكود، بل على فهم الفكرة، اختبار النتائج، تحسين تجربة المستخدم، توثيق المشاريع، ونشر أدوات قابلة للاستخدام.",
-        "hero.viewProjects": "عرض المشاريع",
+.lang-btn {
+    border: none;
+    outline: none;
+    padding: 7px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 800;
+    font-size: 12px;
+    color: var(--text-secondary);
+    background: transparent;
+    transition: 0.2s ease;
+}
 
-        "about.title": "عني",
-        "about.p1": "أنا طالب مرحلة ثالثة في قسم علوم الحاسوب بجامعة الأنبار، مهتم ببناء أدوات برمجية عملية والتعلم من خلال مشاريع حقيقية.",
-        "about.p2": "أستخدم التطوير بمساعدة الذكاء الاصطناعي كجزء من عملية التعلم. أركز على تحويل الأفكار إلى مشاريع تعمل، وفهم الكود الناتج وتحسينه، واختبار الميزات، وإصلاح المشاكل، وكتابة التوثيق، ونشر أدوات مفيدة.",
-        "about.p3": "أهتم أيضًا بالمشاريع التقنية العملية مثل أنظمة إنترنت الأشياء، تجارب الهاردوير، المكونات الإلكترونية، والصفحات التعليمية التفاعلية.",
+.lang-btn:hover {
+    background-color: var(--border-light);
+    color: var(--text-primary);
+}
 
-        "work.title": "ما أعمل عليه",
-        "work.ai": "مشاريع برمجية بمساعدة الذكاء الاصطناعي",
-        "work.telegram": "بوتات تيليجرام",
-        "work.web": "تطبيقات ويب",
-        "work.desktop": "أدوات ديسكتوب",
-        "work.android": "تطبيقات أندرويد",
-        "work.iot": "إنترنت الأشياء والأنظمة المدمجة",
-        "work.educational": "أدوات تعليمية",
-        "work.arabic": "تعلم عربي وأدوات جامعية",
-        "work.serverless": "خلفيات سيرفرلس",
-        "work.hardware": "تجارب هاردوير",
+.lang-btn.active {
+    background: var(--primary-color);
+    color: #ffffff;
+}
 
-        "software.title": "مشاريع برمجية مميزة",
-        "project.uoadrop.status": "تطبيق ديسكتوب",
-        "project.uoadrop.description": "نظام لإدارة طلبات الطباعة لمكاتب الطباعة الجامعية، يعمل أولًا محليًا وعلى الديسكتوب، ومبني باستخدام Electron وFastify وSQLite وReact وNext.js وSupabase.",
-        "project.deutschdrop.status": "بوت تيليجرام",
-        "project.deutschdrop.description": "بوت تيليجرام لتعلم مفردات اللغة الألمانية باستخدام التكرار المتباعد SRS ورفع CSV ونقاط XP وتحديات ومهام يومية وإنجازات، مع Backend على Cloudflare Workers وD1.",
-        "project.gymtech.status": "تطبيق موبايل",
-        "project.gymtech.description": "تطبيق أندرويد عربي للياقة البدنية مدعوم بالذكاء الاصطناعي، مبني باستخدام Kotlin وJetpack Compose وClean Architecture وRoom وHilt وOpenAI.",
-        "project.garden.status": "موقع تعليمي",
-        "project.garden.description": "موقع عربي تعليمي بيئي مرتبط بباركود مطبوع لحديقة النشاطات الطلابية في كلية علوم الحاسوب بجامعة الأنبار.",
-        "project.achievements.status": "تطبيق ويب",
-        "project.achievements.description": "حائط إنجازات عربي لطلبة علوم الحاسوب في الأنبار، يحتوي تسجيل دخول ومهام أسبوعية وتتبع تقدم وإدارة مهام، مع Google Sheets كخلفية.",
-        "project.matrix.status": "أداة تفاعلية",
-        "project.matrix.description": "محاكي تفاعلي لمصفوفات C++ مع شبكة مرئية وتشغيل كود أونلاين وعرض ناتج المصفوفات باستخدام HTML وCSS وJavaScript وWandbox API.",
+/* ============================================
+   NAVIGATION
+   ============================================ */
 
-        "iot.title": "مشاريع إنترنت الأشياء والهاردوير",
-        "iot.fingerprint.title": "نظام حضور بالبصمة",
-        "iot.fingerprint.category": "نظام IoT بايومتري",
-        "iot.fingerprint.description": "نظام حضور بايومتري مبني باستخدام ESP32 وحساس بصمة AS608 وساعة حقيقية DS3231 وشاشة OLED وتكامل مع Google Sheets ولوحة تحكم ويب مخصصة.",
-        "iot.features.title": "الميزات الأساسية",
-        "iot.features.f1": "تحقق من الهوية باستخدام البصمة",
-        "iot.features.f2": "تسجيل حضور بالوقت الحقيقي",
-        "iot.features.f3": "تتبع التاريخ والوقت",
-        "iot.features.f4": "تسجيل سحابي في Google Sheets",
-        "iot.features.f5": "عرض ملاحظات مباشرة على شاشة OLED",
-        "iot.features.f6": "لوحة ويب لإدارة المستخدمين",
-        "iot.features.f7": "إضافة وتعديل وحذف البصمات عن بعد",
-        "iot.gallery.title": "معرض المشروع",
-        "iot.gallery.demo": "عرض النظام",
-        "iot.gallery.hardware": "الهاردوير",
-        "iot.why.title": "أهمية المشروع",
-        "iot.why.text": "يجمع هذا المشروع بين الهاردوير والسوفتوير لحل مشكلة واقعية: تقليل الحضور اليدوي والحد من الحضور بالنيابة. يوضح المشروع مهارات التكامل مع IoT والاتصال السحابي وتصميم الأنظمة العملية.",
+.navbar {
+    background-color: rgba(10, 10, 10, 0.96);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
 
-        "activities.title": "أنشطة تقنية عملية وإبداعية",
-        "activities.cpp.title": "مجسم خشبي لـ C++ وعلوم الحاسوب",
-        "activities.cpp.category": "تقنية إبداعية / عمل يدوي",
-        "activities.cpp.description": "مجسم خشبي مصنوع يدويًا ومستوحى من C++ وعلوم الحاسوب، كفعالية تقنية إبداعية عملية.",
-        "activities.iphone.title": "تفكيك iPhone 6 وعرض مكوناته",
-        "activities.iphone.category": "هاردوير / إلكترونيات / دراسة مكونات",
-        "activities.iphone.description": "مشروع تفكيك وعرض مكونات جهاز iPhone 6 داخل لوحة مؤطرة، لعرض مكونات الهاتف الداخلية بطريقة تعليمية.",
+.nav-container {
+    direction: ltr;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+}
 
-        "certificates.title": "الشهادات",
-        "certificates.huawei.name": "صادرة إلى: بلال زامل",
-        "certificates.huawei.date": "تاريخ الإصدار: 26 نيسان 2026",
-        "certificates.huawei.code": "رمز الشهادة: ICT20260426000046",
-        "certificates.huawei.description": "شهادة إكمال بعد إتمام دراسة واختبار openGauss Database Technology and Applications عبر Huawei ICT Academy. هذه شهادة إكمال دورة وليست امتحان شهادة احترافية من هواوي.",
-        "certificates.student.issuer": "جامعة الأنبار",
-        "certificates.student.title": "شهادة شكر وتقدير للنشاطات الطلابية",
-        "certificates.student.name": "مقدمة إلى: بلال زامل أحمد",
-        "certificates.student.date": "التاريخ: 24 كانون الأول 2025",
-        "certificates.student.code": "صادرة من: كلية علوم الحاسوب وتكنولوجيا المعلومات",
-        "certificates.student.description": "شهادة تقدير للمشاركة والجهود المتميزة في أنشطة شعبة النشاطات الطلابية وخلال فترة إعداد ميدان النشاطات الطلابية.",
+.nav-brand {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--primary-color);
+    letter-spacing: 2px;
+    text-decoration: none;
+}
 
-        "education.title": "تصورات تعليمية تفاعلية",
-        "education.seg.title": "التقسيم في معالج 8086",
-        "education.seg.description": "صفحة تعليمية عربية تفاعلية تشرح Memory Segmentation في معالج 8086 وحساب العنوان الفيزيائي.",
-        "education.addr.title": "العنوان المنطقي والفيزيائي في 8086",
-        "education.addr.description": "شرح عربي تفاعلي للعنوان المنطقي والفيزيائي في معالج 8086 مع حساب Segment:Offset وأمثلة بصرية للذاكرة.",
-        "common.view": "عرض",
+.nav-brand:hover {
+    color: var(--accent-color);
+}
 
-        "tech.title": "التقنيات",
-        "contact.title": "التواصل والروابط",
-        "contact.text": "يمكنك التواصل معي أو استكشاف أعمالي من خلال هذه الروابط.",
-        "contact.location": "العراق، الأنبار",
-        "footer.text": "© 2026 بلال زامل أحمد. جميع الحقوق محفوظة."
-    },
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    align-items: center;
+}
 
-    de: {
-        "nav.home": "Start",
-        "nav.about": "Über mich",
-        "nav.work": "Schwerpunkte",
-        "nav.projects": "Projekte",
-        "nav.iot": "IoT & Hardware",
-        "nav.certificates": "Zertifikate",
-        "nav.contact": "Kontakt",
+.nav-link {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 14px;
+    transition: color 0.2s ease;
+    position: relative;
+    white-space: nowrap;
+}
 
-        "hero.title": "Bilal Zamil Ahmed",
-        "hero.subtitle": "Informatikstudent im dritten Studienjahr an der Universität Anbar",
-        "hero.description": "Ich entwickle praktische, KI-unterstützte Softwareprojekte und technische Experimente, um Programmierung, Problemlösung, Automatisierung, IoT und reale Entwicklungsabläufe zu lernen. Mein Fokus liegt nicht nur auf dem Schreiben von Code, sondern auch auf dem Verstehen von Ideen, dem Testen von Ergebnissen, der Verbesserung der Benutzererfahrung, der Dokumentation und der Veröffentlichung nutzbarer Tools.",
-        "hero.viewProjects": "Projekte ansehen",
+.nav-link:hover,
+.nav-link.active {
+    color: var(--primary-color);
+}
 
-        "about.title": "Über mich",
-        "about.p1": "Ich bin Informatikstudent im dritten Studienjahr an der Universität Anbar und interessiere mich dafür, praktische Software-Tools zu bauen und durch reale Projekte zu lernen.",
-        "about.p2": "Ich nutze KI-unterstützte Entwicklung als Teil meines Lernprozesses. Ich konzentriere mich darauf, Ideen in funktionierende Projekte umzusetzen, generierten Code zu verstehen und zu verbessern, Funktionen zu testen, Probleme zu lösen, Dokumentation zu schreiben und nutzbare Tools zu veröffentlichen.",
-        "about.p3": "Außerdem interessiere ich mich für praktische Technikprojekte wie IoT-Systeme, Hardware-Experimente, elektronische Komponenten und interaktive Lernvisualisierungen.",
+.nav-link.active::after {
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color);
+}
 
-        "work.title": "Woran ich arbeite",
-        "work.ai": "KI-unterstützte Software",
-        "work.telegram": "Telegram-Bots",
-        "work.web": "Webanwendungen",
-        "work.desktop": "Desktop-Tools",
-        "work.android": "Android-Apps",
-        "work.iot": "IoT & Embedded",
-        "work.educational": "Lern-Tools",
-        "work.arabic": "Arabische Lern- und Uni-Tools",
-        "work.serverless": "Serverless Backends",
-        "work.hardware": "Hardware-Experimente",
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    background: transparent;
+}
 
-        "software.title": "Ausgewählte Softwareprojekte",
-        "project.uoadrop.status": "Desktop-Anwendung",
-        "project.uoadrop.description": "Ein desktop-first und local-first System zur Verwaltung von Druckaufträgen für universitäre Druckshops, entwickelt mit Electron, Fastify, SQLite, React, Next.js und Supabase.",
-        "project.deutschdrop.status": "Telegram-Bot",
-        "project.deutschdrop.description": "Telegram-Bot zum Lernen deutscher Vokabeln mit SRS, CSV-Import, XP, Challenges, täglichen Aufgaben, Erfolgen und einem Cloudflare Workers/D1 Backend.",
-        "project.gymtech.status": "Mobile App",
-        "project.gymtech.description": "Eine KI-gestützte arabische Fitness-App für Android, entwickelt mit Kotlin, Jetpack Compose, Clean Architecture, Room, Hilt und OpenAI.",
-        "project.garden.status": "Lernwebsite",
-        "project.garden.description": "Eine arabische Umwelt-Lernwebsite, verbunden mit einem gedruckten QR-Code für den Student Activities Garden am College of Computer Science der Universität Anbar.",
-        "project.achievements.status": "Webanwendung",
-        "project.achievements.description": "Eine arabische Achievement-Wall für Informatikstudierende in Anbar mit Login, wöchentlichen Aufgaben, Fortschrittsverfolgung, Admin-Aufgabenverwaltung und Google-Sheets-Backend.",
-        "project.matrix.status": "Interaktives Tool",
-        "project.matrix.description": "Interaktiver C++ Matrix-Simulator mit visueller Matrix, Online-Codeausführung und Ausgabedarstellung mithilfe von HTML, CSS, JavaScript und der Wandbox API.",
+.hamburger span {
+    width: 24px;
+    height: 2px;
+    background-color: var(--text-primary);
+    transition: 0.25s ease;
+    display: block;
+}
 
-        "iot.title": "IoT- und Hardwareprojekte",
-        "iot.fingerprint.title": "Fingerprint-Based Attendance System",
-        "iot.fingerprint.category": "Biometrisches IoT-System",
-        "iot.fingerprint.description": "Ein biometrisches Anwesenheitssystem mit ESP32, AS608-Fingerabdrucksensor, DS3231-Echtzeituhr, OLED-Display, Google-Sheets-Integration und eigenem Web-Dashboard.",
-        "iot.features.title": "Hauptfunktionen",
-        "iot.features.f1": "Identitätsprüfung per Fingerabdruck",
-        "iot.features.f2": "Anwesenheitsprotokollierung in Echtzeit",
-        "iot.features.f3": "Datum- und Zeitverfolgung",
-        "iot.features.f4": "Cloud-Protokollierung in Google Sheets",
-        "iot.features.f5": "Direkte Rückmeldung auf einem OLED-Display",
-        "iot.features.f6": "Web-Dashboard zur Benutzerverwaltung",
-        "iot.features.f7": "Remote-Registrierung, Aktualisierung und Löschung",
-        "iot.gallery.title": "Projektgalerie",
-        "iot.gallery.demo": "System-Demo",
-        "iot.gallery.hardware": "Hardware",
-        "iot.why.title": "Warum es wichtig ist",
-        "iot.why.text": "Dieses Projekt verbindet Hardware und Software, um ein reales Problem zu lösen: manuelle Anwesenheit zu reduzieren und Stellvertreter-Anwesenheit zu verhindern. Es zeigt IoT-Integration, Cloud-Anbindung und praktisches Systemdesign.",
+.hamburger.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
 
-        "activities.title": "Praktische kreative Technikaktivitäten",
-        "activities.cpp.title": "C++ / Computer Science Holzdisplay",
-        "activities.cpp.category": "Creative Tech / Handarbeit",
-        "activities.cpp.description": "Ein handgefertigtes Holzdisplay, inspiriert von C++ und Informatik, als praktische kreative Technikaktivität.",
-        "activities.iphone.title": "iPhone 6 Teardown & Komponentenanzeige",
-        "activities.iphone.category": "Hardware / Elektronik / Komponentenstudie",
-        "activities.iphone.description": "Ein Hardware-Teardown- und Komponentenprojekt mit einem iPhone 6, arrangiert in einem gerahmten Board, um interne Smartphone-Komponenten auf eine lehrreiche Weise zu zeigen.",
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
 
-        "certificates.title": "Zertifikate",
-        "certificates.huawei.name": "Ausgestellt für: Bilal Zamil",
-        "certificates.huawei.date": "Ausstellungsdatum: 26. April 2026",
-        "certificates.huawei.code": "Zertifikatscode: ICT20260426000046",
-        "certificates.huawei.description": "Certificate of Completion für den erfolgreichen Abschluss des Studiums und der Prüfung zu openGauss Database Technology and Applications über die Huawei ICT Academy. Dies ist ein Kursabschlusszertifikat und keine professionelle Huawei-Zertifizierungsprüfung.",
-        "certificates.student.issuer": "Universität Anbar",
-        "certificates.student.title": "Anerkennungszertifikat für studentische Aktivitäten",
-        "certificates.student.name": "Verliehen an: Bilal Zamil Ahmed",
-        "certificates.student.date": "Datum: 24. Dezember 2025",
-        "certificates.student.code": "Ausgestellt von: College of Computer Science and Information Technology",
-        "certificates.student.description": "Ein Anerkennungszertifikat für Teilnahme und besondere Leistungen bei Aktivitäten der Student Activities Division und während der Vorbereitungsphase des Student Activities Garden.",
+.hamburger.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
 
-        "education.title": "Interaktive Lernvisualisierungen",
-        "education.seg.title": "Segmentation im 8086-Prozessor",
-        "education.seg.description": "Interaktive arabische Lernseite zur Erklärung der Speichersegmentierung im 8086-Prozessor und der Berechnung physischer Adressen.",
-        "education.addr.title": "Logische und physische Adresse im 8086",
-        "education.addr.description": "Interaktives arabisches Tutorial zu logischen und physischen Adressen im 8086-Prozessor mit Segment:Offset-Berechnung und visuellen Speicherbeispielen.",
-        "common.view": "Ansehen",
+/* ============================================
+   BUTTONS
+   ============================================ */
 
-        "tech.title": "Tech Stack",
-        "contact.title": "Kontakt & Links",
-        "contact.text": "Du kannst mich kontaktieren oder meine Arbeit über diese Links ansehen.",
-        "contact.location": "Irak, Anbar",
-        "footer.text": "© 2026 Bilal Zamil Ahmed. Alle Rechte vorbehalten."
+.btn {
+    padding: 12px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--text-primary);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-color);
+    color: var(--text-primary);
+    transform: translateY(-2px);
+}
+
+/* ============================================
+   HERO
+   ============================================ */
+
+.hero {
+    background: linear-gradient(135deg, rgba(0, 102, 204, 0.13) 0%, rgba(16, 185, 129, 0.06) 100%);
+    border-bottom: 1px solid var(--border-color);
+    padding: 120px 0;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+}
+
+.hero-content {
+    text-align: center;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.hero-title {
+    font-size: clamp(36px, 6vw, 56px);
+    font-weight: 800;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, #0066cc 0%, #10b981 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-subtitle {
+    font-size: 20px;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+}
+
+.hero-description {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+    line-height: 1.8;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ============================================
+   SECTIONS
+   ============================================ */
+
+section {
+    padding: 80px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.section-title {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 60px;
+    color: var(--text-primary);
+}
+
+/* ============================================
+   ABOUT
+   ============================================ */
+
+.about {
+    background-color: rgba(26, 26, 26, 0.5);
+}
+
+.about-content {
+    max-width: 850px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.about-content p {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    line-height: 1.8;
+}
+
+body.rtl .about-content {
+    text-align: right;
+}
+
+/* ============================================
+   WORK ON
+   ============================================ */
+
+.work-on {
+    background-color: var(--bg-dark);
+}
+
+.skills-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+}
+
+.badge {
+    background-color: rgba(0, 102, 204, 0.15);
+    color: var(--accent-color);
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-size: 14px;
+    border: 1px solid rgba(0, 102, 204, 0.3);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.badge:hover {
+    background-color: rgba(0, 102, 204, 0.25);
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+/* ============================================
+   PROJECT CARDS
+   ============================================ */
+
+.software-projects,
+.activities,
+.education,
+.contact {
+    background-color: rgba(26, 26, 26, 0.5);
+}
+
+.projects .container,
+.iot-section .container,
+.activities .container,
+.certificates .container,
+.education .container {
+    max-width: 1000px;
+}
+
+.project-card,
+.iot-project-card,
+.activity-card,
+.certificate-card,
+.education-card,
+.tech-item,
+.contact-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    transition: all 0.3s ease;
+}
+
+.project-card,
+.iot-project-card {
+    padding: 32px;
+    margin-bottom: 24px;
+}
+
+.project-card:hover,
+.iot-project-card:hover,
+.activity-card:hover,
+.certificate-card:hover,
+.education-card:hover,
+.tech-item:hover,
+.contact-card:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 22px rgba(0, 102, 204, 0.16);
+    transform: translateY(-4px);
+}
+
+.project-card.featured,
+.iot-project-card.featured {
+    background: linear-gradient(135deg, rgba(0, 102, 204, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
+    border-color: rgba(0, 102, 204, 0.3);
+}
+
+.project-header,
+.iot-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    gap: 20px;
+}
+
+.project-title,
+.iot-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.iot-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.project-status,
+.iot-category {
+    display: inline-block;
+    font-size: 12px;
+    color: var(--accent-color);
+    background-color: rgba(0, 102, 204, 0.15);
+    padding: 4px 12px;
+    border-radius: 999px;
+    margin-top: 8px;
+}
+
+.iot-category {
+    color: var(--accent-green);
+    background-color: rgba(16, 185, 129, 0.15);
+}
+
+.project-links,
+.iot-links {
+    display: flex;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.project-link,
+.iot-link {
+    width: 38px;
+    height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 102, 204, 0.1);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.project-link:hover,
+.iot-link:hover {
+    background-color: var(--primary-color);
+    color: var(--text-primary);
+    border-color: var(--primary-color);
+}
+
+.project-description,
+.iot-description,
+.activity-description,
+.education-description,
+.certificate-description {
+    color: var(--text-secondary);
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.project-description,
+.iot-description {
+    margin-bottom: 20px;
+}
+
+.project-tech,
+.iot-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tech-badge {
+    background-color: rgba(16, 185, 129, 0.15);
+    color: var(--accent-green);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+/* ============================================
+   IMAGES / GALLERIES
+   ============================================ */
+
+.responsive-img,
+.gallery-img,
+.certificate-img {
+    width: 100%;
+    display: block;
+    border-radius: 12px;
+}
+
+.project-image,
+.iot-thumbnail,
+.activity-image,
+.certificate-image {
+    margin-bottom: 20px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-darker);
+    box-shadow: var(--shadow);
+}
+
+.project-image img,
+.iot-thumbnail img,
+.activity-image img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+}
+
+.iot-thumbnail img {
+    height: 340px;
+}
+
+.activity-image img {
+    height: 280px;
+}
+
+.iot-gallery {
+    margin: 28px 0;
+}
+
+.iot-gallery h4,
+.iot-features h4,
+.iot-why h4 {
+    font-size: 16px;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.gallery-item {
+    background-color: rgba(0, 0, 0, 0.22);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.gallery-img {
+    height: 240px;
+    object-fit: cover;
+}
+
+.gallery-caption {
+    padding: 10px 14px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+/* ============================================
+   IOT DETAILS
+   ============================================ */
+
+.iot-features,
+.iot-why {
+    background-color: rgba(0, 0, 0, 0.22);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 24px;
+}
+
+.iot-features ul {
+    list-style: none;
+}
+
+.iot-features li {
+    color: var(--text-secondary);
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.iot-features i {
+    color: var(--accent-green);
+    font-size: 14px;
+}
+
+.iot-why {
+    background-color: rgba(16, 185, 129, 0.1);
+    border-inline-start: 3px solid var(--accent-green);
+}
+
+/* ============================================
+   ACTIVITIES
+   ============================================ */
+
+.activities-grid,
+.education-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.activity-card {
+    padding: 28px;
+    text-align: center;
+}
+
+.activity-icon {
+    font-size: 44px;
+    color: var(--primary-color);
+    margin: 8px 0 16px;
+}
+
+.activity-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.activity-category {
+    font-size: 12px;
+    color: var(--accent-green);
+    margin-bottom: 12px;
+}
+
+/* ============================================
+   CERTIFICATES
+   ============================================ */
+
+.certificates {
+    background-color: var(--bg-dark);
+}
+
+.certificate-card {
+    padding: 32px;
+    display: flex;
+    gap: 28px;
+    align-items: flex-start;
+    margin-bottom: 28px;
+}
+
+.certificate-image {
+    flex: 0 0 380px;
+    max-width: 380px;
+    background-color: #ffffff;
+}
+
+.certificate-img {
+    height: auto;
+    object-fit: contain;
+    background-color: #ffffff;
+}
+
+.certificate-content {
+    flex: 1;
+}
+
+.certificate-issuer {
+    font-size: 14px;
+    color: var(--accent-color);
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.certificate-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+.certificate-name,
+.certificate-date,
+.certificate-code {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+/* ============================================
+   EDUCATION / TECH / CONTACT
+   ============================================ */
+
+.education-card {
+    padding: 24px;
+}
+
+.education-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.education-title i {
+    color: var(--primary-color);
+}
+
+.education-links {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.education-links a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.tech-stack {
+    background-color: var(--bg-dark);
+}
+
+.tech-grid,
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 20px;
+}
+
+.tech-item {
+    padding: 24px;
+    text-align: center;
+}
+
+.tech-item i,
+.contact-card i {
+    font-size: 32px;
+    color: var(--primary-color);
+    margin-bottom: 12px;
+    display: block;
+}
+
+.tech-item span,
+.contact-card span {
+    font-size: 14px;
+    color: var(--text-secondary);
+    font-weight: 700;
+}
+
+.contact-text {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 16px;
+    margin: 0 auto 40px;
+    max-width: 650px;
+}
+
+.contact-card {
+    padding: 24px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+.contact-location {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-top: 36px;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+.footer {
+    background-color: rgba(10, 10, 10, 0.96);
+    border-top: 1px solid var(--border-color);
+    color: var(--text-muted);
+    text-align: center;
+    padding: 30px 0;
+}
+
+.footer p {
+    font-size: 14px;
+}
+
+/* ============================================
+   RTL FIXES
+   ============================================ */
+
+body.rtl .project-card,
+body.rtl .iot-project-card,
+body.rtl .activity-card,
+body.rtl .certificate-card,
+body.rtl .education-card,
+body.rtl .contact,
+body.rtl .about-content {
+    text-align: right;
+}
+
+body.rtl .hero-content,
+body.rtl .section-title,
+body.rtl .contact-text,
+body.rtl .contact-location,
+body.rtl .gallery-caption,
+body.rtl .activity-card,
+body.rtl .tech-item,
+body.rtl .contact-card {
+    text-align: center;
+}
+
+body.rtl .project-header,
+body.rtl .iot-header,
+body.rtl .education-title,
+body.rtl .iot-title,
+body.rtl .iot-features li {
+    direction: rtl;
+}
+
+body.rtl .project-tech,
+body.rtl .iot-tech,
+body.rtl .skills-badges {
+    direction: rtl;
+}
+
+/* ============================================
+   FADE IN
+   ============================================ */
+
+.fade-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.fade-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 900px) {
+    .nav-menu {
+        gap: 18px;
     }
-};
 
-let currentLanguage = localStorage.getItem("language") || "en";
-
-function changeLanguage(lang) {
-    if (!translations[lang]) return;
-    currentLanguage = lang;
-    localStorage.setItem("language", lang);
-    updatePageContent();
-    updatePageDirection();
-    closeMobileMenu();
-}
-
-function updatePageContent() {
-    const dictionary = translations[currentLanguage] || translations.en;
-
-    document.querySelectorAll("[data-i18n]").forEach((element) => {
-        const key = element.getAttribute("data-i18n");
-        if (dictionary[key]) {
-            element.textContent = dictionary[key];
-        }
-    });
-
-    document.title =
-        currentLanguage === "ar"
-            ? "بلال زامل أحمد - ملف شخصي"
-            : currentLanguage === "de"
-            ? "Bilal Zamil Ahmed - Studentenportfolio"
-            : "Bilal Zamil Ahmed - Student Portfolio";
-}
-
-function updatePageDirection() {
-    const html = document.documentElement;
-    const body = document.body;
-
-    html.setAttribute("lang", currentLanguage);
-    html.setAttribute("dir", currentLanguage === "ar" ? "rtl" : "ltr");
-
-    body.classList.toggle("rtl", currentLanguage === "ar");
-    body.classList.toggle("ltr", currentLanguage !== "ar");
-
-    document.querySelectorAll(".lang-btn").forEach((btn) => {
-        btn.classList.toggle("active", btn.dataset.lang === currentLanguage);
-    });
-}
-
-function closeMobileMenu() {
-    const navMenu = document.querySelector(".nav-menu");
-    const hamburger = document.querySelector(".hamburger");
-
-    if (navMenu) navMenu.classList.remove("active");
-    if (hamburger) hamburger.classList.remove("active");
-}
-
-function setupSmoothScrolling() {
-    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener("click", function (event) {
-            const href = this.getAttribute("href");
-            if (!href || href === "#") return;
-
-            const target = document.querySelector(href);
-            if (!target) return;
-
-            event.preventDefault();
-            target.scrollIntoView({ behavior: "smooth", block: "start" });
-            closeMobileMenu();
-        });
-    });
-}
-
-function setupActiveNavOnScroll() {
-    window.addEventListener("scroll", () => {
-        let current = "";
-        const sections = document.querySelectorAll("section[id]");
-
-        sections.forEach((section) => {
-            const sectionTop = section.offsetTop;
-            if (window.scrollY >= sectionTop - 180) {
-                current = section.getAttribute("id");
-            }
-        });
-
-        document.querySelectorAll(".nav-link").forEach((link) => {
-            link.classList.toggle("active", link.getAttribute("href") === `#${current}`);
-        });
-    });
-}
-
-function setupMobileMenu() {
-    const hamburger = document.querySelector(".hamburger");
-    const navMenu = document.querySelector(".nav-menu");
-
-    if (!hamburger || !navMenu) return;
-
-    hamburger.addEventListener("click", (event) => {
-        event.stopPropagation();
-        hamburger.classList.toggle("active");
-        navMenu.classList.toggle("active");
-    });
-
-    document.addEventListener("click", (event) => {
-        if (!event.target.closest(".navbar")) {
-            closeMobileMenu();
-        }
-    });
-}
-
-function setupFadeInAnimation() {
-    const elements = document.querySelectorAll(
-        ".project-card, .iot-project-card, .activity-card, .certificate-card, .education-card, .tech-item, .contact-card"
-    );
-
-    if (!("IntersectionObserver" in window)) {
-        elements.forEach((element) => element.classList.add("visible"));
-        return;
+    .nav-link {
+        font-size: 13px;
     }
 
-    const observer = new IntersectionObserver(
-        (entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("visible");
-                    observer.unobserve(entry.target);
-                }
-            });
-        },
-        { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
-    );
+    .certificate-card {
+        flex-direction: column;
+    }
 
-    elements.forEach((element) => {
-        element.classList.add("fade-item");
-        observer.observe(element);
-    });
+    .certificate-image {
+        max-width: 100%;
+        flex: auto;
+    }
 }
 
-window.addEventListener("DOMContentLoaded", () => {
-    setupSmoothScrolling();
-    setupActiveNavOnScroll();
-    setupMobileMenu();
-    setupFadeInAnimation();
-    updatePageContent();
-    updatePageDirection();
-    document.body.style.opacity = "1";
-});
+@media (max-width: 768px) {
+    html {
+        scroll-padding-top: 78px;
+    }
+
+    .language-selector {
+        top: 82px;
+        right: 12px;
+        padding: 6px;
+        gap: 5px;
+    }
+
+    body.rtl .language-selector {
+        right: auto;
+        left: 12px;
+    }
+
+    .lang-btn {
+        padding: 5px 9px;
+        font-size: 11px;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 64px;
+        left: 0;
+        right: 0;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 10px 20px 18px;
+        background-color: rgba(10, 10, 10, 0.98);
+        border-bottom: 1px solid var(--border-color);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .nav-menu li {
+        width: 100%;
+    }
+
+    .nav-link {
+        display: block;
+        padding: 12px 0;
+        font-size: 15px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .nav-link.active::after {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .hero {
+        padding: 90px 0 70px;
+        min-height: 480px;
+    }
+
+    .hero-subtitle {
+        font-size: 17px;
+    }
+
+    .hero-description {
+        font-size: 15px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    section {
+        padding: 58px 0;
+    }
+
+    .section-title {
+        margin-bottom: 38px;
+    }
+
+    .project-card,
+    .iot-project-card,
+    .activity-card,
+    .certificate-card,
+    .education-card {
+        padding: 20px;
+    }
+
+    .project-header,
+    .iot-header {
+        flex-direction: column;
+    }
+
+    .activities-grid,
+    .education-grid,
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project-image img,
+    .iot-thumbnail img,
+    .activity-image img,
+    .gallery-img {
+        height: 220px;
+    }
+
+    .iot-title {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 16px;
+    }
+
+    .hero {
+        padding-top: 82px;
+        min-height: 430px;
+    }
+
+    .project-title,
+    .iot-title {
+        font-size: 18px;
+    }
+
+    .tech-grid,
+    .contact-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .tech-item,
+    .contact-card {
+        padding: 18px 12px;
+    }
+
+    .activity-image img,
+    .project-image img,
+    .iot-thumbnail img,
+    .gallery-img {
+        height: 205px;
+    }
+}
