@@ -1,73 +1,39 @@
 // ============================================
-// LANGUAGE SUPPORT
+// MULTILINGUAL SUPPORT
 // ============================================
 
 const translations = {
     en: {
         home: "Home",
         about: "About",
+        work: "What I Do",
         projects: "Projects",
-        skills: "Skills",
+        iot: "IoT & Hardware",
+        certificates: "Certificates",
         contact: "Contact",
-        heroSubtitle: "Third-year Computer Science Student at University of Anbar",
-        heroDescription: "I build practical, AI-assisted software projects to learn programming, problem-solving, automation, and real-world development workflows. My focus is not only writing code, but also understanding ideas, testing results, improving user experience, documenting projects, and publishing usable tools.",
         viewProjects: "View Projects",
-        githubProfile: "GitHub Profile",
-        aboutTitle: "About Me",
-        aboutText1: "I am a third-year Computer Science student at the University of Anbar, interested in building practical software tools and learning through real projects.",
-        aboutText2: "I use AI-assisted development as part of my learning process. I focus on turning ideas into working projects, understanding and improving generated code, testing features, fixing problems, writing documentation, and publishing usable tools.",
-        whatIWorkOn: "What I Work On",
-        featuredProjects: "Featured Projects",
-        educationalVisualizations: "Educational Visualizations",
-        techStack: "Tech Stack",
-        contactTitle: "Contact & Links",
-        contactText: "Feel free to reach out or explore my work through these links.",
-        location: "Iraq, Anbar",
+        github: "GitHub",
+        linkedin: "LinkedIn",
+        youtube: "YouTube",
+        instagram: "Instagram",
+        website: "Website",
         footer: "All rights reserved."
     },
     ar: {
         home: "الرئيسية",
         about: "عني",
+        work: "ما أعمل عليه",
         projects: "المشاريع",
-        skills: "المهارات",
+        iot: "IoT والأجهزة",
+        certificates: "الشهادات",
         contact: "التواصل",
-        heroSubtitle: "طالب علوم حاسوب في السنة الثالثة بجامعة الأنبار",
-        heroDescription: "أبني مشاريع برمجية عملية بمساعدة الذكاء الاصطناعي لتعلم البرمجة وحل المشاكل والأتمتة وسير العمل الفعلي. تركيزي ليس فقط على كتابة الكود، بل أيضاً على فهم الأفكار، واختبار النتائج، وتحسين تجربة المستخدم، وتوثيق المشاريع، ونشر الأدوات القابلة للاستخدام.",
         viewProjects: "عرض المشاريع",
-        githubProfile: "ملف GitHub",
-        aboutTitle: "عني",
-        aboutText1: "أنا طالب علوم حاسوب في السنة الثالثة بجامعة الأنبار، مهتم بإنشاء أدوات برمجية عملية والتعلم من خلال المشاريع الحقيقية.",
-        aboutText2: "أستخدم التطوير بمساعدة الذكاء الاصطناعي كجزء من عملية تعلمي. أركز على تحويل الأفكار إلى مشاريع فعالة، وفهم وتحسين الكود المُنتج، واختبار الميزات، وحل المشاكل، وكتابة التوثيق، ونشر الأدوات المفيدة.",
-        whatIWorkOn: "ما أعمل عليه",
-        featuredProjects: "المشاريع المختارة",
-        educationalVisualizations: "الرسوميات التعليمية",
-        techStack: "مكدس التقنيات",
-        contactTitle: "التواصل والروابط",
-        contactText: "لا تتردد في التواصل أو استكشاف أعمالي من خلال هذه الروابط.",
-        location: "العراق، الأنبار",
+        github: "GitHub",
+        linkedin: "LinkedIn",
+        youtube: "YouTube",
+        instagram: "Instagram",
+        website: "الموقع الإلكتروني",
         footer: "جميع الحقوق محفوظة."
-    },
-    de: {
-        home: "Startseite",
-        about: "Über",
-        projects: "Projekte",
-        skills: "Fähigkeiten",
-        contact: "Kontakt",
-        heroSubtitle: "Dritte Jahr Informatikstudent an der Universität Anbar",
-        heroDescription: "Ich entwickle praktische, KI-gestützte Softwareprojekte, um Programmierung, Problemlösung, Automatisierung und echte Entwicklungs-Workflows zu lernen. Mein Fokus liegt nicht nur auf dem Schreiben von Code, sondern auch auf dem Verstehen von Ideen, dem Testen von Ergebnissen, der Verbesserung der Benutzererfahrung, der Dokumentation von Projekten und der Veröffentlichung nützlicher Tools.",
-        viewProjects: "Projekte anzeigen",
-        githubProfile: "GitHub-Profil",
-        aboutTitle: "Über Mich",
-        aboutText1: "Ich bin ein Informatikstudent im dritten Jahr an der Universität Anbar und interessiere mich für den Aufbau praktischer Softwaretools und das Lernen durch echte Projekte.",
-        aboutText2: "Ich nutze KI-gestützte Entwicklung als Teil meines Lernprozesses. Ich konzentriere mich darauf, Ideen in funktionierende Projekte umzuwandeln, erzeugten Code zu verstehen und zu verbessern, Funktionen zu testen, Probleme zu beheben, Dokumentation zu schreiben und nützliche Tools zu veröffentlichen.",
-        whatIWorkOn: "Womit ich arbeite",
-        featuredProjects: "Ausgewählte Projekte",
-        educationalVisualizations: "Lernvisualisierungen",
-        techStack: "Tech-Stack",
-        contactTitle: "Kontakt & Links",
-        contactText: "Zögern Sie nicht, mich zu kontaktieren oder meine Arbeiten über diese Links zu erkunden.",
-        location: "Irak, Anbar",
-        footer: "Alle Rechte vorbehalten."
     }
 };
 
@@ -93,51 +59,15 @@ function updatePageContent() {
     
     // Navigation
     document.querySelectorAll('.nav-link').forEach((link, index) => {
-        const keys = ['home', 'about', 'projects', 'skills', 'contact'];
+        const keys = ['home', 'about', 'work', 'projects', 'iot', 'certificates', 'contact'];
         if (keys[index]) link.textContent = t[keys[index]];
     });
     
-    // Hero Section
-    document.querySelector('.hero-subtitle').textContent = t.heroSubtitle;
-    document.querySelector('.hero-description').textContent = t.heroDescription;
-    
-    const heroButtons = document.querySelectorAll('.hero-buttons .btn');
-    heroButtons[0].textContent = t.viewProjects;
-    heroButtons[1].textContent = t.githubProfile;
-    
-    // About Section
-    document.querySelectorAll('.section-title')[0].textContent = t.aboutTitle;
-    document.querySelectorAll('.about-content p')[0].textContent = t.aboutText1;
-    document.querySelectorAll('.about-content p')[1].textContent = t.aboutText2;
-    
-    const whatIWorkOn = document.querySelector('.subsection-title');
-    if (whatIWorkOn) whatIWorkOn.textContent = t.whatIWorkOn;
-    
-    // Projects Section
-    const projectsTitle = document.querySelectorAll('.section-title')[1];
-    if (projectsTitle) projectsTitle.textContent = t.featuredProjects;
-    
-    const eduTitle = document.querySelector('.section-subtitle');
-    if (eduTitle) eduTitle.textContent = t.educationalVisualizations;
-    
-    // Skills Section
-    const skillsTitle = document.querySelectorAll('.section-title')[2];
-    if (skillsTitle) skillsTitle.textContent = t.techStack;
-    
-    // Contact Section
-    const contactTitle = document.querySelectorAll('.section-title')[3];
-    if (contactTitle) contactTitle.textContent = t.contactTitle;
-    
-    const contactText = document.querySelector('.contact-text');
-    if (contactText) contactText.textContent = t.contactText;
-    
-    const contactLocation = document.querySelector('.contact-location');
-    if (contactLocation) {
-        contactLocation.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${t.location}`;
-    }
-    
     // Footer
-    document.querySelector('.footer p').textContent = `© 2026 Bilal Zamil Ahmed. ${t.footer}`;
+    const footerText = document.querySelector('.footer p');
+    if (footerText) {
+        footerText.textContent = `© 2026 Bilal Zamil Ahmed. ${t.footer}`;
+    }
 }
 
 // ============================================
@@ -173,7 +103,7 @@ function updatePageDirection() {
 
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        if (this.getAttribute('href').startsWith('#')) {
+        if (this.getAttribute('href').startsWith('#') && this.getAttribute('href') !== '#') {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
@@ -181,6 +111,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                     behavior: 'smooth',
                     block: 'start'
                 });
+                // Close mobile menu if open
+                const navMenu = document.querySelector('.nav-menu');
+                if (navMenu && navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                }
             }
         }
     });
@@ -224,11 +159,13 @@ if (hamburger) {
     });
 }
 
-// Close menu when a link is clicked
-document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-    });
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.navbar')) {
+        if (navMenu && navMenu.classList.contains('active')) {
+            navMenu.classList.remove('active');
+        }
+    }
 });
 
 // ============================================
@@ -259,8 +196,8 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Observe project cards and other elements
-document.querySelectorAll('.project-card, .tech-item, .contact-card').forEach(el => {
+// Observe cards and elements
+document.querySelectorAll('.project-card, .iot-project-card, .activity-card, .certificate-card, .education-card, .tech-item, .contact-card').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(20px)';
     el.style.transition = 'all 0.6s ease';
