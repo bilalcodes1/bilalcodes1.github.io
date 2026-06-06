@@ -7,6 +7,7 @@
     --primary-hover: #0052a3;
     --secondary-color: #1a1a1a;
     --accent-color: #4d94ff;
+    --accent-green: #10b981;
     --bg-dark: #0f0f0f;
     --bg-darker: #0a0a0a;
     --bg-card: #1a1a1a;
@@ -15,7 +16,6 @@
     --text-muted: #808080;
     --border-color: #2a2a2a;
     --border-light: #333333;
-    --success: #10b981;
     --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     --shadow-lg: 0 20px 25px rgba(0, 0, 0, 0.4);
 }
@@ -187,6 +187,44 @@ body.rtl .nav-link.active::after {
 }
 
 /* ============================================
+   BUTTONS
+   ============================================ */
+
+.btn {
+    padding: 12px 28px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+    font-size: 14px;
+    display: inline-block;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--text-primary);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-color);
+    color: var(--text-primary);
+    transform: translateY(-2px);
+}
+
+/* ============================================
    HERO SECTION
    ============================================ */
 
@@ -244,44 +282,6 @@ body.rtl .hero-buttons {
 }
 
 /* ============================================
-   BUTTONS
-   ============================================ */
-
-.btn {
-    padding: 12px 28px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.2s ease;
-    cursor: pointer;
-    border: 2px solid transparent;
-    font-size: 14px;
-    display: inline-block;
-}
-
-.btn-primary {
-    background-color: var(--primary-color);
-    color: var(--text-primary);
-}
-
-.btn-primary:hover {
-    background-color: var(--primary-hover);
-    transform: translateY(-2px);
-}
-
-.btn-secondary {
-    background-color: transparent;
-    color: var(--primary-color);
-    border: 2px solid var(--primary-color);
-}
-
-.btn-secondary:hover {
-    background-color: var(--primary-color);
-    color: var(--text-primary);
-    transform: translateY(-2px);
-}
-
-/* ============================================
    SECTIONS
    ============================================ */
 
@@ -302,14 +302,6 @@ section:last-of-type {
     color: var(--text-primary);
 }
 
-.section-subtitle {
-    font-size: 24px;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-top: 60px;
-    margin-bottom: 30px;
-}
-
 /* ============================================
    ABOUT SECTION
    ============================================ */
@@ -320,7 +312,7 @@ section:last-of-type {
 
 .about-content {
     max-width: 800px;
-    margin: 0 auto 40px;
+    margin: 0 auto;
     text-align: center;
 }
 
@@ -331,12 +323,12 @@ section:last-of-type {
     line-height: 1.8;
 }
 
-.subsection-title {
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 30px;
-    text-align: center;
+/* ============================================
+   WORK ON SECTION
+   ============================================ */
+
+.work-on {
+    background-color: var(--bg-dark);
 }
 
 .skills-badges {
@@ -349,24 +341,32 @@ section:last-of-type {
 .badge {
     background-color: rgba(0, 102, 204, 0.15);
     color: var(--accent-color);
-    padding: 8px 16px;
+    padding: 10px 18px;
     border-radius: 20px;
     font-size: 14px;
     border: 1px solid rgba(0, 102, 204, 0.3);
     transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .badge:hover {
     background-color: rgba(0, 102, 204, 0.25);
     border-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.badge i {
+    font-size: 16px;
 }
 
 /* ============================================
-   PROJECTS SECTION
+   PROJECT CARDS - SOFTWARE
    ============================================ */
 
-.projects {
-    background-color: var(--bg-dark);
+.software-projects {
+    background-color: rgba(26, 26, 26, 0.5);
 }
 
 .projects .container {
@@ -411,6 +411,16 @@ body.rtl .project-header {
     color: var(--text-primary);
 }
 
+.project-status {
+    display: inline-block;
+    font-size: 12px;
+    color: var(--accent-color);
+    background-color: rgba(0, 102, 204, 0.15);
+    padding: 4px 12px;
+    border-radius: 12px;
+    margin-top: 6px;
+}
+
 .project-links {
     display: flex;
     gap: 12px;
@@ -452,7 +462,7 @@ body.rtl .project-header {
 
 .tech-badge {
     background-color: rgba(16, 185, 129, 0.15);
-    color: var(--success);
+    color: var(--accent-green);
     padding: 6px 12px;
     border-radius: 4px;
     font-size: 12px;
@@ -460,17 +470,286 @@ body.rtl .project-header {
 }
 
 /* ============================================
-   EDUCATIONAL PROJECTS
+   IOT SECTION
    ============================================ */
 
-.education-projects {
+.iot-section {
+    background-color: var(--bg-dark);
+}
+
+.iot-project-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 32px;
+    transition: all 0.3s ease;
+}
+
+.iot-project-card.featured {
+    background: linear-gradient(135deg, rgba(0, 102, 204, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
+    border: 1px solid rgba(0, 102, 204, 0.3);
+}
+
+.iot-project-card:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 20px rgba(0, 102, 204, 0.15);
+    transform: translateY(-4px);
+}
+
+.iot-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+    gap: 20px;
+}
+
+body.rtl .iot-header {
+    flex-direction: row-reverse;
+}
+
+.iot-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.iot-category {
+    font-size: 13px;
+    color: var(--accent-green);
+    background-color: rgba(16, 185, 129, 0.15);
+    padding: 4px 12px;
+    border-radius: 12px;
+    display: inline-block;
+    margin-top: 8px;
+}
+
+.iot-links {
+    display: flex;
+    gap: 12px;
+}
+
+.iot-link {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 102, 204, 0.1);
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    font-size: 16px;
+}
+
+.iot-link:hover {
+    background-color: var(--primary-color);
+    color: var(--text-primary);
+}
+
+.iot-description {
+    color: var(--text-secondary);
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 24px;
+}
+
+.iot-features {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+}
+
+.iot-features h4 {
+    font-size: 16px;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+.iot-features ul {
+    list-style: none;
+}
+
+.iot-features li {
+    color: var(--text-secondary);
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.iot-features i {
+    color: var(--accent-green);
+    font-size: 14px;
+}
+
+.iot-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.iot-why {
+    background-color: rgba(16, 185, 129, 0.1);
+    padding: 20px;
+    border-left: 3px solid var(--accent-green);
+    border-radius: 4px;
+}
+
+.iot-why h4 {
+    font-size: 16px;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+.iot-why p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+/* ============================================
+   ACTIVITIES SECTION
+   ============================================ */
+
+.activities {
+    background-color: rgba(26, 26, 26, 0.5);
+}
+
+.activities-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 24px;
-    margin-top: 40px;
 }
 
-.edu-project-card {
+.activity-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 28px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.activity-card:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 15px rgba(0, 102, 204, 0.1);
+    transform: translateY(-4px);
+}
+
+.activity-icon {
+    font-size: 48px;
+    color: var(--primary-color);
+    margin-bottom: 16px;
+}
+
+.activity-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.activity-category {
+    font-size: 12px;
+    color: var(--accent-green);
+    margin-bottom: 12px;
+}
+
+.activity-description {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* ============================================
+   CERTIFICATES SECTION
+   ============================================ */
+
+.certificates {
+    background-color: var(--bg-dark);
+}
+
+.certificate-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 32px;
+    display: flex;
+    gap: 28px;
+    align-items: flex-start;
+    transition: all 0.3s ease;
+}
+
+.certificate-card:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 20px rgba(0, 102, 204, 0.15);
+    transform: translateY(-4px);
+}
+
+.certificate-badge {
+    font-size: 64px;
+    color: var(--accent-gold, #fbbf24);
+    min-width: 100px;
+    text-align: center;
+}
+
+.certificate-content {
+    flex: 1;
+}
+
+.certificate-issuer {
+    font-size: 14px;
+    color: var(--accent-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.certificate-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+.certificate-name,
+.certificate-date,
+.certificate-code {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.certificate-description {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-top: 12px;
+}
+
+/* ============================================
+   EDUCATION SECTION
+   ============================================ */
+
+.education {
+    background-color: rgba(26, 26, 26, 0.5);
+}
+
+.education-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.education-card {
     background-color: var(--bg-card);
     border: 1px solid var(--border-color);
     border-radius: 10px;
@@ -478,32 +757,39 @@ body.rtl .project-header {
     transition: all 0.3s ease;
 }
 
-.edu-project-card:hover {
+.education-card:hover {
     border-color: var(--primary-color);
     box-shadow: 0 0 15px rgba(0, 102, 204, 0.1);
     transform: translateY(-4px);
 }
 
-.edu-project-title {
+.education-title {
     font-size: 18px;
     font-weight: 600;
     color: var(--text-primary);
     margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-.edu-project-description {
+.education-title i {
+    color: var(--primary-color);
+}
+
+.education-description {
     color: var(--text-secondary);
     font-size: 14px;
     line-height: 1.6;
     margin-bottom: 16px;
 }
 
-.edu-project-links {
+.education-links {
     display: flex;
     gap: 12px;
 }
 
-.edu-project-links a {
+.education-links a {
     color: var(--primary-color);
     text-decoration: none;
     font-size: 14px;
@@ -514,16 +800,16 @@ body.rtl .project-header {
     transition: color 0.2s ease;
 }
 
-.edu-project-links a:hover {
+.education-links a:hover {
     color: var(--accent-color);
 }
 
 /* ============================================
-   SKILLS SECTION
+   TECH STACK SECTION
    ============================================ */
 
-.skills {
-    background-color: rgba(26, 26, 26, 0.5);
+.tech-stack {
+    background-color: var(--bg-dark);
 }
 
 .tech-grid {
@@ -566,7 +852,7 @@ body.rtl .project-header {
    ============================================ */
 
 .contact {
-    background-color: var(--bg-dark);
+    background-color: rgba(26, 26, 26, 0.5);
 }
 
 .contact-text {
@@ -673,7 +959,7 @@ body.rtl .project-header {
 
     .nav-menu {
         gap: 16px;
-        font-size: 14px;
+        font-size: 13px;
     }
 
     .nav-link {
@@ -695,10 +981,6 @@ body.rtl .project-header {
         gap: 0;
         padding: 20px;
         border-bottom: 1px solid var(--border-color);
-    }
-
-    body.rtl .nav-menu.active .nav-link {
-        flex-direction: column;
     }
 
     .hero {
@@ -723,10 +1005,6 @@ body.rtl .project-header {
         align-items: center;
     }
 
-    body.rtl .hero-buttons {
-        flex-direction: column;
-    }
-
     .btn {
         width: 100%;
         max-width: 280px;
@@ -737,30 +1015,25 @@ body.rtl .project-header {
         margin-bottom: 40px;
     }
 
-    .project-card {
+    .project-card,
+    .iot-project-card,
+    .certificate-card {
         padding: 20px;
     }
 
-    .project-header {
+    .certificate-card {
         flex-direction: column;
-    }
-
-    body.rtl .project-header {
-        flex-direction: column;
-    }
-
-    .tech-grid {
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-        gap: 16px;
-    }
-
-    .contact-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
+        align-items: center;
+        text-align: center;
     }
 
     .skills-badges {
         gap: 8px;
+    }
+
+    .badge {
+        font-size: 13px;
+        padding: 8px 14px;
     }
 
     section {
@@ -785,19 +1058,23 @@ body.rtl .project-header {
         font-size: 24px;
     }
 
-    .project-title {
+    .project-title,
+    .iot-title {
         font-size: 18px;
     }
 
-    .project-card {
-        padding: 16px;
-    }
-
-    .tech-grid {
-        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-    }
-
+    .tech-grid,
     .contact-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .tech-item i {
+        font-size: 24px;
+    }
+
+    .activities-grid,
+    .education-grid {
         grid-template-columns: 1fr;
     }
 
