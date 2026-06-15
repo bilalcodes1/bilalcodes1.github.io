@@ -283,11 +283,33 @@ body.rtl .language-selector {
     line-height: 1.8;
 }
 
+.hero-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
 .hero-buttons {
     display: flex;
     gap: 16px;
     justify-content: center;
     flex-wrap: wrap;
+    width: 100%;
+}
+
+.cv-btn i {
+    margin-right: 8px;
+}
+
+body.rtl .cv-btn i {
+    margin-right: 0;
+    margin-left: 8px;
+}
+
+.cv-note {
+    font-size: 13px;
+    color: var(--text-muted);
 }
 
 /* ============================================

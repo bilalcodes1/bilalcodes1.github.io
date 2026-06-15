@@ -13,9 +13,12 @@ const translations = {
         "nav.contact": "Contact",
 
         "hero.title": "Bilal Zamil Ahmed",
-        "hero.subtitle": "Third-year Computer Science Student at University of Anbar",
-        "hero.description": "I build practical, AI-assisted software projects and hands-on tech experiments to learn programming, problem-solving, automation, IoT, and real-world development workflows. My focus is not only writing code, but also understanding ideas, testing results, improving user experience, documenting projects, and publishing usable tools.",
+        "hero.subtitle": "Third-year Computer Science student building practical software, AI-assisted tools, and hands-on tech projects.",
+        "hero.description": "I build real student-focused projects such as Telegram bots, web tools, mobile apps, and IoT prototypes. I care about practical systems that solve clear problems.",
         "hero.viewProjects": "View Projects",
+        "hero.contactMe": "Contact Me",
+        "hero.downloadCv": "Download CV",
+        "hero.cvNote": "CV will be added soon.",
 
         "about.title": "About Me",
         "about.p1": "I am a third-year Computer Science student at the University of Anbar, interested in building practical software tools and learning through real projects.",
@@ -110,9 +113,12 @@ const translations = {
         "nav.contact": "التواصل",
 
         "hero.title": "بلال زامل أحمد",
-        "hero.subtitle": "طالب مرحلة ثالثة في علوم الحاسوب — جامعة الأنبار",
-        "hero.description": "أبني مشاريع برمجية عملية بمساعدة الذكاء الاصطناعي وتجارب تقنية يدوية حتى أتعلم البرمجة، حل المشاكل، الأتمتة، إنترنت الأشياء، وطريقة تطوير المشاريع الواقعية. تركيزي ليس فقط على كتابة الكود، بل على فهم الفكرة، اختبار النتائج، تحسين تجربة المستخدم، توثيق المشاريع، ونشر أدوات قابلة للاستخدام.",
+        "hero.subtitle": "طالب علوم حاسوب في المرحلة الثالثة، أبني برمجيات عملية وأدوات مدعومة بالذكاء الاصطناعي ومشاريع تقنية تطبيقية.",
+        "hero.description": "أبني مشاريع حقيقية تركز على الطلاب مثل بوتات تيليجرام وأدوات ويب وتطبيقات موبايل ونماذج إنترنت الأشياء (IoT). أهتم بالأنظمة العملية التي تحل مشاكل واضحة.",
         "hero.viewProjects": "عرض المشاريع",
+        "hero.contactMe": "تواصل معي",
+        "hero.downloadCv": "تحميل السيرة الذاتية",
+        "hero.cvNote": "سيتم إضافة السيرة الذاتية قريباً.",
 
         "about.title": "عني",
         "about.p1": "أنا طالب مرحلة ثالثة في قسم علوم الحاسوب بجامعة الأنبار، مهتم ببناء أدوات برمجية عملية والتعلم من خلال مشاريع حقيقية.",
@@ -207,9 +213,12 @@ const translations = {
         "nav.contact": "Kontakt",
 
         "hero.title": "Bilal Zamil Ahmed",
-        "hero.subtitle": "Informatikstudent im dritten Studienjahr an der Universität Anbar",
-        "hero.description": "Ich entwickle praktische, KI-unterstützte Softwareprojekte und technische Experimente, um Programmierung, Problemlösung, Automatisierung, IoT und reale Entwicklungsabläufe zu lernen. Mein Fokus liegt nicht nur auf dem Schreiben von Code, sondern auch auf dem Verstehen von Ideen, dem Testen von Ergebnissen, der Verbesserung der Benutzererfahrung, der Dokumentation und der Veröffentlichung nutzbarer Tools.",
+        "hero.subtitle": "Informatikstudent im dritten Studienjahr. Ich entwickle praktische Software, KI-gestützte Tools und praxisnahe Technikprojekte.",
+        "hero.description": "Ich baue echte, studentenorientierte Projekte wie Telegram-Bots, Web-Tools, mobile Apps und IoT-Prototypen. Mir sind praktische Systeme wichtig, die klare Probleme lösen.",
         "hero.viewProjects": "Projekte ansehen",
+        "hero.contactMe": "Kontaktieren Sie mich",
+        "hero.downloadCv": "Lebenslauf herunterladen",
+        "hero.cvNote": "Lebenslauf wird bald hinzugefügt.",
 
         "about.title": "Über mich",
         "about.p1": "Ich bin Informatikstudent im dritten Studienjahr an der Universität Anbar und interessiere mich dafür, praktische Software-Tools zu bauen und durch reale Projekte zu lernen.",
