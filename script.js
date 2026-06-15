@@ -17,8 +17,8 @@ const translations = {
         "hero.description": "I build real student-focused projects such as Telegram bots, web tools, mobile apps, and IoT prototypes. I care about practical systems that solve clear problems.",
         "hero.viewProjects": "View Projects",
         "hero.contactMe": "Contact Me",
-        "hero.downloadCv": "Download CV",
-        "hero.cvNote": "CV will be added soon.",
+        "hero.downloadCvPdf": "Download CV PDF",
+        "hero.downloadCvWord": "Download CV Word",
 
         "about.title": "About Me",
         "about.p1": "I am a third-year Computer Science student at the University of Anbar, interested in building practical software tools and learning through real projects.",
@@ -117,8 +117,8 @@ const translations = {
         "hero.description": "أبني مشاريع حقيقية تركز على الطلاب مثل بوتات تيليجرام وأدوات ويب وتطبيقات موبايل ونماذج إنترنت الأشياء (IoT). أهتم بالأنظمة العملية التي تحل مشاكل واضحة.",
         "hero.viewProjects": "عرض المشاريع",
         "hero.contactMe": "تواصل معي",
-        "hero.downloadCv": "تحميل السيرة الذاتية",
-        "hero.cvNote": "سيتم إضافة السيرة الذاتية قريباً.",
+        "hero.downloadCvPdf": "تحميل CV PDF",
+        "hero.downloadCvWord": "تحميل CV Word",
 
         "about.title": "عني",
         "about.p1": "أنا طالب مرحلة ثالثة في قسم علوم الحاسوب بجامعة الأنبار، مهتم ببناء أدوات برمجية عملية والتعلم من خلال مشاريع حقيقية.",
@@ -217,8 +217,8 @@ const translations = {
         "hero.description": "Ich baue echte, studentenorientierte Projekte wie Telegram-Bots, Web-Tools, mobile Apps und IoT-Prototypen. Mir sind praktische Systeme wichtig, die klare Probleme lösen.",
         "hero.viewProjects": "Projekte ansehen",
         "hero.contactMe": "Kontaktieren Sie mich",
-        "hero.downloadCv": "Lebenslauf herunterladen",
-        "hero.cvNote": "Lebenslauf wird bald hinzugefügt.",
+        "hero.downloadCvPdf": "Lebenslauf PDF",
+        "hero.downloadCvWord": "Lebenslauf Word",
 
         "about.title": "Über mich",
         "about.p1": "Ich bin Informatikstudent im dritten Studienjahr an der Universität Anbar und interessiere mich dafür, praktische Software-Tools zu bauen und durch reale Projekte zu lernen.",
